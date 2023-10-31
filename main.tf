@@ -1,41 +1,34 @@
-terraform {
-  required_providers {
-    vcf = {
-      source = "vmware/vcf"
-    }
-  }
-}
 provider "vcf" {
   sddc_manager_host = var.sddc_manager_host
   sddc_manager_username = var.sddc_manager_username
   sddc_manager_password = var.sddc_manager_password
-  allow_unverified_tls = true
+  allow_unverified_tls = var.allow_unverified_tls
 }
 
 resource "vcf_network_pool" "domain_pool" {
-  name    = "sfo-w01-np01"
+  name    = var.network_pool_name
   network {
-    gateway   = "172.16.13.1"
-    mask      = "255.255.255.0"
-    mtu       = 8900
-    subnet    = "172.16.13.0"
-    type      = "VSAN"
-    vlan_id   = 1613
+    gateway   = var.network_pool_storage_gateway
+    mask      = var.network_pool_storage_netmask
+    mtu       = var.network_pool_storage_mtu
+    subnet    = var.network_pool_storage_subnet
+    type      = var.network_pool_storage_type
+    vlan_id   = var.network_pool_storage_vlan_id
     ip_pools {
-      start = "172.16.13.5"
-      end   = "172.16.13.50"
+      start = var.network_pool_storage_ip_pool_start_ip
+      end   = var.network_pool_storage_ip_pool_end_ip
     }
   }
   network {
-    gateway   = "172.16.12.1"
-    mask      = "255.255.255.0"
-    mtu       = 8900
-    subnet    = "172.16.12.0"
-    type      = "vMotion"
-    vlan_id   = 1612
+    gateway   = var.network_pool_vmotion_gateway
+    mask      = var.network_pool_vmotion_netmask
+    mtu       = var.network_pool_vmotion_mtu
+    subnet    = var.network_pool_vmotion_subnet
+    type      = var.network_pool_vmotion_type
+    vlan_id   = var.network_pool_vmotion_vlan_id
     ip_pools {
-      start = "172.16.12.5"
-      end   = "172.16.12.50"
+      start = var.network_pool_vmotion_ip_pool_start_ip
+      end   = var.network_pool_vmotion_ip_pool_end_ip
     }
   }
 }
