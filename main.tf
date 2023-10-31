@@ -103,63 +103,75 @@ resource "vcf_domain" "domain1" {
     }
   }
   cluster {
-    name = "sfo-w01-cl01"
+    name = var.vsphere_cluster_name
     host {
       id = vcf_host.host1.id
       license_key = var.esx_license_key
       vmnic {
-        id = "vmnic0"
-        vds_name = "sfo-w01-cl01-vds01"
+        id = var.esx_vmnic0
+        vds_name = var.vmnic0_vds_name
       }
       vmnic {
-        id = "vmnic1"
-        vds_name = "sfo-w01-cl01-vds01"
+        id = var.esx_vmnic1
+        vds_name = var.vmnic1_vds_name
       }
     }
     host {
       id = vcf_host.host2.id
       license_key = var.esx_license_key
       vmnic {
-        id = "vmnic0"
-        vds_name = "sfo-w01-cl01-vds01"
+        id = var.esx_vmnic0
+        vds_name = var.vmnic0_vds_name
       }
       vmnic {
-        id = "vmnic1"
-        vds_name = "sfo-w01-cl01-vds01"
+        id = var.esx_vmnic1
+        vds_name = var.vmnic1_vds_name
       }
     }
     host {
       id = vcf_host.host3.id
       license_key = var.esx_license_key
       vmnic {
-        id = "vmnic0"
-        vds_name = "sfo-w01-cl01-vds01"
+        id = var.esx_vmnic0
+        vds_name = var.vmnic0_vds_name
       }
       vmnic {
-        id = "vmnic1"
-        vds_name = "sfo-w01-cl01-vds01"
+        id = var.esx_vmnic1
+        vds_name = var.vmnic1_vds_name
+      }
+    }
+    host {
+      id = vcf_host.host4.id
+      license_key = var.esx_license_key
+      vmnic {
+        id = var.esx_vmnic0
+        vds_name = var.vmnic0_vds_name
+      }
+      vmnic {
+        id = var.esx_vmnic1
+        vds_name = var.vmnic1_vds_name
       }
     }
     vds {
-      name = "sfo-w01-cl01-vds01"
+      name = var.vds_name
       portgroup {
-        name = "sfo-w01-cl01-vds01-pg-mgmt"
+        name = var.portgroup_management_name
         transport_type = "MANAGEMENT"
       }
       portgroup {
-        name = "sfo-w01-cl01-vds01-pg-vsan"
+        name = var.portgroup_vsan_name
         transport_type = "VSAN"
       }
       portgroup {
-        name = "sfo-w01-cl01-vds01-pg-vmotion"
+        name = var.portgroup_vmotion_name
         transport_type = "VMOTION"
       }
     }
     vsan_datastore {
-      datastore_name = "sfo-w01-cl01-ds-vsan01"
-      failures_to_tolerate = 1
+      datastore_name = var.vsan_datastore_name
+      failures_to_tolerate = var.vsan_failures_to_tolerate
       license_key = var.vsan_license_key
     }
-    geneve_vlan_id = 1634
+    geneve_vlan_id = var.geneve_vlan_id
   }
 }
