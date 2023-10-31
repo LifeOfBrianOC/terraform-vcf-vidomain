@@ -35,64 +35,71 @@ resource "vcf_network_pool" "domain_pool" {
 
 resource "vcf_host" "host1" {
   fqdn      = var.esx_host1_fqdn
-  username  = "root"
+  username  = var.esx_host1_username
   password  = var.esx_host1_pass
   network_pool_id = vcf_network_pool.domain_pool.id
-  storage_type = "VSAN"
+  storage_type = var.esx_host1_storage_type
 }
 resource "vcf_host" "host2" {
   fqdn      = var.esx_host2_fqdn
-  username  = "root"
+  username  = var.esx_host2_username
   password  = var.esx_host2_pass
   network_pool_id = vcf_network_pool.domain_pool.id
-  storage_type = "VSAN"
+  storage_type = var.esx_host2_storage_type
 }
 resource "vcf_host" "host3" {
   fqdn      = var.esx_host3_fqdn
-  username  = "root"
+  username  = var.esx_host3_username
   password  = var.esx_host3_pass
   network_pool_id = vcf_network_pool.domain_pool.id
-  storage_type = "VSAN"
+  storage_type = var.esx_host3_storage_type
+}
+resource "vcf_host" "host4" {
+  fqdn      = var.esx_host4_fqdn
+  username  = var.esx_host4_username
+  password  = var.esx_host4_pass
+  network_pool_id = vcf_network_pool.domain_pool.id
+  storage_type = var.esx_host4_storage_type
 }
 resource "vcf_domain" "domain1" {
-  name                    = "sfo-w01"
+  name                    = var.vcf_domain_name
   vcenter_configuration {
-    name            = "sfo-w01.vc01"
-    datacenter_name = "sfo-w01.dc01"
+    name            = var.vcf_domain_vcenter_name
+    datacenter_name = var.vcf_domain_vcenter_datacenter_name
     root_password   = var.vcenter_root_password
-    vm_size         = "small"
-    storage_size    = "lstorage"
-    ip_address      = "172.16.11.130"
-    subnet_mask     = "255.255.255.0"
-    gateway         = "172.16.11.1"
-    fqdn            = "sfo-w01-vc01.sfo.rainpole.io"
+    vm_size         = var.vcenter_vm_size
+    storage_size    = var.vcenter_storage_size
+    ip_address      = var.vcenter_ip_address
+    subnet_mask     = var.vcenter_subnet_mask
+    gateway         = var.vcenter_gateway
+    fqdn            = var.vcenter_fqdn
   }
   nsx_configuration {
-    vip        					= "172.16.11.131"
-    vip_fqdn   					= "sfo-w01-nsx01.sfo.rainpole.io"
+    vip        					= var.nsx_vip_ip
+    vip_fqdn   					= var.nsx_vip_fqdn
     nsx_manager_admin_password	= var.nsx_manager_admin_password
-    form_factor                 = "small"
+    form_factor                 = var.nsx_manager_form_factor
     license_key                 = var.nsx_license_key
     nsx_manager_node {
-      name        = "sfo-w01-nsx01a"
-      ip_address  = "172.16.11.132"
-      fqdn    = "sfo-w01-nsx01a.sfo.rainpole.io"
-      subnet_mask = "255.255.255.0"
-      gateway     = "172.16.11.1"
+      name        = var.nsx_manager_node1_name
+      ip_address  = var.nsx_manager_node1_ip_address
+      fqdn    = var.nsx_manager_node1_fqdn
+      subnet_mask = var.nsx_manager_node1_subnet_mask
+      gateway     = var.nsx_manager_node1_gateway
     }
     nsx_manager_node {
-      name        = "sfo-w01-nsx01b"
-      ip_address  = "172.16.11.133"
-      fqdn    = "sfo-w01-nsx01b.sfo.rainpole.io"
-      subnet_mask = "255.255.255.0"
-      gateway     = "172.16.11.1"
+      name        = var.nsx_manager_node2_name
+      ip_address  = var.nsx_manager_node2_ip_address
+      fqdn    = var.nsx_manager_node2_fqdn
+      subnet_mask = var.nsx_manager_node2_subnet_mask
+      gateway     = var.nsx_manager_node2_gateway
     }
     nsx_manager_node {
-      name        = "sfo-w01-nsx01c"
-      ip_address  = "172.16.11.134"
-      fqdn    = "sfo-w01-nsx01c.sfo.rainpole.io"
-      subnet_mask = "255.255.255.0"
-      gateway     = "172.16.11.1"
+      name        = var.nsx_manager_node3_name
+      ip_address  = var.nsx_manager_node3_ip_address
+      fqdn    = var.nsx_manager_node3_fqdn
+      subnet_mask = var.nsx_manager_node3_subnet_mask
+      gateway     = var.nsx_manager_node3_gateway
     }
   }
   cluster {
