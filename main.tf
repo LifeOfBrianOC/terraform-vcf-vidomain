@@ -1,5 +1,5 @@
 provider "vcf" {
-  sddc_manager_host = var.sddc_manager_host
+  sddc_manager_host = var.sddc_manager_fqdn
   sddc_manager_username = var.sddc_manager_username
   sddc_manager_password = var.sddc_manager_password
   allow_unverified_tls = var.allow_unverified_tls
