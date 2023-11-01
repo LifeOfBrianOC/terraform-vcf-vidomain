@@ -173,5 +173,6 @@ resource "vcf_domain" "domain1" {
       license_key = var.vsan_license_key
     }
     geneve_vlan_id = var.geneve_vlan_id
+    geneve_vlan_id2 = var.geneve_vlan_id
   }
 }
