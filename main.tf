@@ -24,7 +24,7 @@ resource "vcf_network_pool" "domain_pool" {
     mask      = var.network_pool_vmotion_netmask
     mtu       = var.network_pool_vmotion_mtu
     subnet    = var.network_pool_vmotion_subnet
-    type      = var.network_pool_vmotion_type
+    type      = "vmotion"
     vlan_id   = var.network_pool_vmotion_vlan_id
     ip_pools {
       start = var.network_pool_vmotion_ip_pool_start_ip
@@ -38,28 +38,28 @@ resource "vcf_host" "host1" {
   username  = var.esx_host1_username
   password  = var.esx_host1_pass
   network_pool_id = vcf_network_pool.domain_pool.id
-  storage_type = var.esx_host1_storage_type
+  storage_type = var.esx_host_storage_type
 }
 resource "vcf_host" "host2" {
   fqdn      = var.esx_host2_fqdn
   username  = var.esx_host2_username
   password  = var.esx_host2_pass
   network_pool_id = vcf_network_pool.domain_pool.id
-  storage_type = var.esx_host2_storage_type
+  storage_type = var.esx_host_storage_type
 }
 resource "vcf_host" "host3" {
   fqdn      = var.esx_host3_fqdn
   username  = var.esx_host3_username
   password  = var.esx_host3_pass
   network_pool_id = vcf_network_pool.domain_pool.id
-  storage_type = var.esx_host3_storage_type
+  storage_type = var.esx_host_storage_type
 }
 resource "vcf_host" "host4" {
   fqdn      = var.esx_host4_fqdn
   username  = var.esx_host4_username
   password  = var.esx_host4_pass
   network_pool_id = vcf_network_pool.domain_pool.id
-  storage_type = var.esx_host4_storage_type
+  storage_type = var.esx_host_storage_type
 }
 resource "vcf_domain" "domain1" {
   name                    = var.vcf_domain_name
