@@ -2,7 +2,8 @@
 
 <img src=".github/icon-400px.svg" alt="A Terraform Module for deploying VI Workload Domains using the VMware Cloud Foundation Terraform Provider" width="150"></br></br>
 
-# terraform-vmware-cloudfoundation-domain: A Terraform Module for deploying VI Workload Domains using the VMware Cloud Foundation Terraform Provider
+# Terraform VMware Cloud Foundation Module 
+For deploying VI Workload Domains using the VMware Cloud Foundation Terraform Provider
 
 
 ## Overview
