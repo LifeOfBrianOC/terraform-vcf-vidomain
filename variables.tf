@@ -39,8 +39,8 @@ variable "network_pool_storage_mtu" {
   default = ""
   type = number
   validation {
-    condition     = var.network_pool_storage_mtu >= 1500 && var.network_pool_storage_mtu <= 9000 && floor(var.network_pool_storage_mtu) == var.network_pool_storage_mtu
-    error_message = "Accepted values: 1500-9000."
+    condition     = var.network_pool_storage_mtu >= 1500 && var.network_pool_storage_mtu <= 65535 && floor(var.network_pool_storage_mtu) == var.network_pool_storage_mtu
+    error_message = "Accepted values: 1500-65535."
   }
 }
 variable "network_pool_storage_subnet" {
@@ -52,10 +52,6 @@ variable "network_pool_storage_type" {
   description = "Network pool type used to create the workload domain storage network pool"
   default = ""
   type = string
-  validation {
-    condition     = contains(["vsan", "nfs", "iscsi"], var.network_pool_storage_type)
-    error_message = "Valid values for var: network_pool_storage_type are (vsan, nfs, iscsi)."
-  } 
 }
 variable "network_pool_storage_vlan_id" {
   description = "VLAN ID used to create the workload domain storage network pool"
@@ -66,19 +62,11 @@ variable "network_pool_storage_ip_pool_start_ip" {
   description = "Start IP used to create the workload domain storage network pool ip pool"
   default = ""
   type = string
-  validation {
-        condition = can(regex("^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$",var.network_pool_storage_ip_pool_start_ip))
-        error_message = "Invalid IP address provided."
-    }
 }
 variable "network_pool_storage_ip_pool_end_ip" {
   description = "End IP used to create the workload domain storage network pool ip pool"
   default = ""
   type = string
-  validation {
-        condition = can(regex("^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$",var.network_pool_storage_ip_pool_end_ip))
-        error_message = "Invalid IP address provided."
-    }
 }
 
 variable "network_pool_vmotion_gateway" {
@@ -120,10 +108,6 @@ variable "esx_host_storage_type" {
   description = "Principal storage type to assign to ESXi hosts of the default cluster"
   default = ""
   type = string
-  validation {
-    condition     = contains(["vsan", "nfs", "iscsi"], var.esx_host1_storage_type)
-    error_message = "Valid values for var: esx_host1_storage_type are (vsan, nfs, iscsi)."
-  } 
 }
 variable "esx_host1_fqdn" {
   description = "Fully qualified domain name of ESXi host 1"
