@@ -1,7 +1,4 @@
 <!-- markdownlint-disable first-line-h1 no-inline-html -->
-
-<img src=".github/icon-400px.svg" alt="A Terraform Module for deploying VI Workload Domains using the VMware Cloud Foundation Terraform Provider" width="150"></br></br>
-
 # Terraform VMware Cloud Foundation Module 
 For deploying VI Workload Domains using the VMware Cloud Foundation Terraform Provider
 
