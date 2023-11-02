@@ -1,5 +1,6 @@
 <!-- markdownlint-disable first-line-h1 no-inline-html -->
 # Terraform VMware Cloud Foundation Module 
+
 For deploying VI Workload Domains using the VMware Cloud Foundation Terraform Provider
 
 
@@ -11,7 +12,9 @@ This module is an open source Terraform Module for deploying VI Workload Domains
 
 HashiCorp docs for the VMware Cloud Foundation Provider https://registry.terraform.io/providers/vmware/vcf/latest/docs
 
+## Usage
 
+See module-example.tf in /examples
 ## Contributing
 
 The project team welcomes contributions from the community.
