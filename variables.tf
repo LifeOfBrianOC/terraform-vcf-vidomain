@@ -1,6 +1,6 @@
 variable "sddc_manager_fqdn" {
   description = "Fully qualified domain name of an SDDC Manager instance"
-  default = "sfo-vcf01"
+  default = ""
   type = string
 }
 variable "sddc_manager_username" {
